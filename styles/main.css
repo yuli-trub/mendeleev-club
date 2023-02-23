@@ -124,6 +124,18 @@ h1 {
   flex-wrap: wrap;
   width: 25%;
 }
+.alcohol--highlighted-vodka {
+  background-color: rgba(83, 143, 217, 0.5019607843);
+}
+.alcohol--highlighted-rum {
+  background-color: rgba(94, 96, 206, 0.5019607843);
+}
+.alcohol--highlighted-tequila {
+  background-color: rgba(114, 239, 221, 0.5019607843);
+}
+.alcohol--highlighted-gin {
+  background-color: rgba(86, 207, 225, 0.5019607843);
+}
 .alcohol__mini-card {
   border: 2px #5e60ce solid;
   width: 50%;
@@ -168,10 +180,9 @@ h1 {
 }
 
 .card {
-  display: none;
   position: absolute;
   right: 30%;
-  top: 32rem;
+  top: 40%;
   width: 40%;
   height: 55rem;
   border: 5px #56cfe1 solid;
@@ -179,8 +190,24 @@ h1 {
   padding: 3rem;
   overflow: scroll;
 }
+.card--hidden {
+  display: none;
+}
+.card--rum {
+  border-color: #5e60ce;
+}
+.card--vodka {
+  border-color: #5390d9;
+}
+.card--tequila {
+  border-color: #72efdd;
+}
+.card--gin {
+  border-color: #56cfe1;
+}
 .card__title {
   font-size: 3.6rem;
+  margin: 2rem 0 2.4rem 0;
 }
 .card__instruction-wrap {
   margin-top: 3.6rem;
@@ -191,4 +218,18 @@ h1 {
 }
 .ingredients__item {
   padding: 1rem;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  position: sticky;
+}
+
+.card__button {
+  color: rgb(238, 238, 238);
+  font-size: 3.6rem;
+  background-color: #0c0f0a;
 }/*# sourceMappingURL=main.css.map */

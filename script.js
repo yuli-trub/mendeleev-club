@@ -2,6 +2,12 @@
 
 const API_BASE_URL = "https://api.api-ninjas.com/v1/cocktail";
 
+// stateful value, state is the 'state' of the app
+let showModal = false;
+
+let vodkaDrinks = [];
+let rumDrinks = [];
+
 const config = {
   headers: {
     "X-Api-Key": "7MCYWsrFWY8L4O10ctFbMA==ZksmoXT5k7sgV9Qe",
@@ -12,10 +18,27 @@ const config = {
 const cocktailsTable = document.getElementById("cocktails");
 console.log(cocktailsTable);
 
+// const getRumDrinks = () => {
+//   return axios.get(`${API_BASE_URL}/?ingredients=rum`, config);
+// };
+
+// const getTequilaDrinks = () => {
+//   return axios.get(`${API_BASE_URL}/?ingredients=rum`, config);
+// };
+
+// getRumDrinks().then(() => {
+//   rumDrinks = response.data;
+//   getTequilaDrinks.then(());
+// });
+
 // RUM
 axios
   .get(`${API_BASE_URL}/?ingredients=rum`, config)
   .then((response) => {
+    axios.get().then(() => {
+      axios.gets;
+    });
+
     console.log(response);
     getRumCocktails(response.data);
   })
@@ -27,7 +50,7 @@ const rumSectionWrapper = document.createElement("section");
 rumSectionWrapper.classList.add("alcohol");
 
 const getRumCocktails = (response) => {
-  response.forEach((cocktail) => {
+  response.forEach((cocktail, i) => {
     const cocktailItem = document.createElement("article");
     cocktailItem.classList.add("alcohol__mini-card");
     cocktailItem.classList.add("alcohol__mini-card--rum");
@@ -45,59 +68,10 @@ const getRumCocktails = (response) => {
     cocktailItem.appendChild(cocktailItemName);
     console.log(cocktailItemName);
 
-    // POP-UP
-    const cocktailCard = document.createElement("div");
-    cocktailCard.classList.add("card");
-
-    const cardHeading = document.createElement("h2");
-    cardHeading.classList.add("card__title");
-    cardHeading.innerText = `${cocktail.name.toUpperCase()}`;
-    cocktailCard.appendChild(cardHeading);
-
-    const cardInfoWrap = document.createElement("div");
-    cardInfoWrap.classList.add("card__info-wrap");
-
-    // INGERDIENTS
-    const cardIngredientsWrap = document.createElement("div");
-    cardIngredientsWrap.classList.add("ingredients");
-
-    const ingredientsHeader = document.createElement("h4");
-    ingredientsHeader.classList.add("ingredients__header");
-    ingredientsHeader.innerText = `INGREDIENTS`;
-    cardIngredientsWrap.appendChild(ingredientsHeader);
-
-    const ingredientList = document.createElement("ul");
-    ingredientList.classList.add("ingredients__list");
-    for (let i = 0; i < cocktail.ingredients.length; i++) {
-      const ingredient = document.createElement("li");
-      ingredient.classList.add("ingredients__item");
-      ingredient.innerText = `${cocktail.ingredients[i]}`;
-      ingredientList.appendChild(ingredient);
-    }
-    cardIngredientsWrap.appendChild(ingredientList);
-    cardInfoWrap.appendChild(cardIngredientsWrap);
-
-    // Instructions
-    const cardInstructionWrap = document.createElement("div");
-    cardInstructionWrap.classList.add("card__instruction-wrap");
-
-    const instructionsHeader = document.createElement("h4");
-    instructionsHeader.classList.add("card__instructions-header");
-    instructionsHeader.innerText = `INSTRUCTIONS`;
-    cardInstructionWrap.appendChild(instructionsHeader);
-
-    const instructions = document.createElement("p");
-    instructions.classList.add("card__instructions");
-    instructions.innerText = `${cocktail.instructions}`;
-    cardInstructionWrap.appendChild(instructions);
-    cardInfoWrap.appendChild(cardInstructionWrap);
-
-    cocktailCard.appendChild(cardInfoWrap);
-    cocktailItem.appendChild(cocktailCard);
     rumSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(rumSectionWrapper);
 
-    // HOVER EVENT ---can do individually
+    // HOVER EVENT
     cocktailItem.addEventListener("mouseover", (event) => {
       const selectedCocktail = document.querySelector(
         ".alcohol__mini-card--hovered-rum"
@@ -116,7 +90,72 @@ const getRumCocktails = (response) => {
         selectedCocktail.classList.remove("alcohol__mini-card--hovered-rum");
       }
     });
+
+    // RUM
+    // click -card
+    cocktailItem.addEventListener("click", (event) => {
+      // get the modal
+      const hiddenCard = document.querySelector(".card");
+      console.log(showModal);
+
+      hiddenCard.scrollTop = 0;
+
+      // if the modal is hidden
+      if (!showModal) {
+        // remove hidden class
+        hiddenCard.classList.remove("card--hidden");
+
+        const cocktailName = document.querySelector(".card__title");
+        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
+
+        const ingredients = document.querySelector(".ingredients__list");
+        const ingredientList = cocktail.ingredients;
+
+        for (let i = 0; i < ingredientList.length; i++) {
+          const ingredient = document.createElement("li");
+          ingredient.classList.add("ingredients__item");
+          ingredient.innerText = `${cocktail.ingredients[i]}`;
+          ingredients.appendChild(ingredient);
+        }
+
+        const instructions = document.querySelector(".card__instructions");
+        const instruction = `${cocktail.instructions}`;
+        instructions.innerText = `${instruction}`;
+
+        // event.currentTarget.classList.add("alcohol__mini-card--hovered-rum");
+
+        showModal = true;
+        return;
+      }
+
+      if (showModal) {
+        // hide modal again
+        showModal = false;
+
+        hiddenCard.classList.add("card--hidden");
+      }
+
+      // if (event.currentTarget.classList.contains("alcohol__mini-card--rum")) {
+      //   shownCard.classList.add("card--rum");
+      // }
+    });
   });
+};
+
+// window.onclick = function (event) {
+//   if (showModal === true) {
+//     const hiddenCard = document.querySelector(".card");
+
+//     showModal = false;
+//     hiddenCard.classList.add("card--hidden");
+//   }
+// };
+
+document.querySelector(".card__button").onclick = (event) => {
+  const hiddenCard = document.querySelector(".card");
+
+  hiddenCard.classList.toggle("card--hidden");
+  showModal = false;
 };
 
 // TEQUILA
@@ -153,55 +192,6 @@ const getTequilaCocktails = (response) => {
     cocktailItem.appendChild(cocktailItemName);
     console.log(cocktailItemName);
 
-    // POP-UP
-    const cocktailCard = document.createElement("div");
-    cocktailCard.classList.add("card");
-
-    const cardHeading = document.createElement("h2");
-    cardHeading.classList.add("card__title");
-    cardHeading.innerText = `${cocktail.name.toUpperCase()}`;
-    cocktailCard.appendChild(cardHeading);
-
-    const cardInfoWrap = document.createElement("div");
-    cardInfoWrap.classList.add("card__info-wrap");
-
-    // INGERDIENTS
-    const cardIngredientsWrap = document.createElement("div");
-    cardIngredientsWrap.classList.add("ingredients__wrap");
-
-    const ingredientsHeader = document.createElement("h4");
-    ingredientsHeader.classList.add("ingredients__header");
-    ingredientsHeader.innerText = `INGREDIENTS`;
-    cardIngredientsWrap.appendChild(ingredientsHeader);
-
-    const ingredientList = document.createElement("ul");
-    ingredientList.classList.add("ingredients__list");
-    for (let i = 0; i < cocktail.ingredients.length; i++) {
-      const ingredient = document.createElement("li");
-      ingredient.classList.add("ingredients__item");
-      ingredient.innerText = `${cocktail.ingredients[i]}`;
-      ingredientList.appendChild(ingredient);
-    }
-    cardIngredientsWrap.appendChild(ingredientList);
-    cardInfoWrap.appendChild(cardIngredientsWrap);
-
-    // Instructions
-    const cardInstructionWrap = document.createElement("div");
-    cardInstructionWrap.classList.add("card__instruction-wrap");
-
-    const instructionsHeader = document.createElement("h4");
-    instructionsHeader.classList.add("card__instructions-header");
-    instructionsHeader.innerText = `INSTRUCTIONS`;
-    cardInstructionWrap.appendChild(instructionsHeader);
-
-    const instructions = document.createElement("p");
-    instructions.classList.add("card__instructions");
-    instructions.innerText = `${cocktail.instructions}`;
-    cardInstructionWrap.appendChild(instructions);
-    cardInfoWrap.appendChild(cardInstructionWrap);
-
-    cocktailCard.appendChild(cardInfoWrap);
-    cocktailItem.appendChild(cocktailCard);
     tequilaSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(tequilaSectionWrapper);
 
@@ -227,6 +217,57 @@ const getTequilaCocktails = (response) => {
           "alcohol__mini-card--hovered-tequila"
         );
       }
+    });
+
+    // click -card
+    cocktailItem.addEventListener("click", (event) => {
+      const hiddenCard = document.querySelector(".card");
+      console.log(event.currentTarget);
+      hiddenCard.scrollTop = 0;
+
+      // if the modal is hidden
+      if (!showModal) {
+        // remove hidden class
+        hiddenCard.classList.remove("card--hidden");
+
+        const cocktailName = document.querySelector(".card__title");
+        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
+
+        const ingredients = document.querySelector(".ingredients__list");
+        const ingredientList = cocktail.ingredients;
+
+        for (let i = 0; i < ingredientList.length; i++) {
+          const ingredient = document.createElement("li");
+          ingredient.classList.add("ingredients__item");
+          ingredient.innerText = `${cocktail.ingredients[i]}`;
+          ingredients.appendChild(ingredient);
+        }
+
+        const instructions = document.querySelector(".card__instructions");
+        const instruction = `${cocktail.instructions}`;
+        instructions.innerText = `${instruction}`;
+
+        // event.currentTarget.classList.add("alcohol__mini-card--hovered-rum");
+
+        showModal = true;
+        return;
+      }
+
+      if (showModal) {
+        // hide modal again
+        showModal = false;
+
+        hiddenCard.classList.add("card--hidden");
+      }
+
+      if (event.currentTarget.classList.contains("alcohol__mini-card--rum")) {
+        hiddenCard.classList.add("card--rum");
+      }
+
+      // if (event.currentTarget.classList.includes("alcohol__mini-card--rum")) {
+      //   // do stuff
+
+      //   return;
     });
   });
 };
@@ -265,55 +306,6 @@ const getGinCocktails = (response) => {
     cocktailItem.appendChild(cocktailItemName);
     console.log(cocktailItemName);
 
-    // POP-UP
-    const cocktailCard = document.createElement("div");
-    cocktailCard.classList.add("card");
-
-    const cardHeading = document.createElement("h2");
-    cardHeading.classList.add("card__title");
-    cardHeading.innerText = `${cocktail.name.toUpperCase()}`;
-    cocktailCard.appendChild(cardHeading);
-
-    const cardInfoWrap = document.createElement("div");
-    cardInfoWrap.classList.add("card__info-wrap");
-
-    // INGERDIENTS
-    const cardIngredientsWrap = document.createElement("div");
-    cardIngredientsWrap.classList.add("ingredients__wrap");
-
-    const ingredientsHeader = document.createElement("h4");
-    ingredientsHeader.classList.add("ingredients__header");
-    ingredientsHeader.innerText = `INGREDIENTS`;
-    cardIngredientsWrap.appendChild(ingredientsHeader);
-
-    const ingredientList = document.createElement("ul");
-    ingredientList.classList.add("ingredients__list");
-    for (let i = 0; i < cocktail.ingredients.length; i++) {
-      const ingredient = document.createElement("li");
-      ingredient.classList.add("ingredients__item");
-      ingredient.innerText = `${cocktail.ingredients[i]}`;
-      ingredientList.appendChild(ingredient);
-    }
-    cardIngredientsWrap.appendChild(ingredientList);
-    cardInfoWrap.appendChild(cardIngredientsWrap);
-
-    // Instructions
-    const cardInstructionWrap = document.createElement("div");
-    cardInstructionWrap.classList.add("card__instruction-wrap");
-
-    const instructionsHeader = document.createElement("h4");
-    instructionsHeader.classList.add("card__instructions-header");
-    instructionsHeader.innerText = `INSTRUCTIONS`;
-    cardInstructionWrap.appendChild(instructionsHeader);
-
-    const instructions = document.createElement("p");
-    instructions.classList.add("card__instructions");
-    instructions.innerText = `${cocktail.instructions}`;
-    cardInstructionWrap.appendChild(instructions);
-    cardInfoWrap.appendChild(cardInstructionWrap);
-
-    cocktailCard.appendChild(cardInfoWrap);
-    cocktailItem.appendChild(cocktailCard);
     ginSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(ginSectionWrapper);
 
@@ -335,6 +327,49 @@ const getGinCocktails = (response) => {
       if (selectedCocktail) {
         selectedCocktail.classList.remove("alcohol__mini-card--hovered-gin");
       }
+    });
+
+    // click -card
+    cocktailItem.addEventListener("click", (event) => {
+      const hiddenCard = document.querySelector(".card");
+      console.log(event.currentTarget);
+      hiddenCard.scrollTop = 0;
+
+      if (hiddenCard) {
+        hiddenCard.classList.remove("card--hidden");
+
+        const cocktailName = document.querySelector(".card__title");
+        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
+
+        const ingredients = document.querySelector(".ingredients__list");
+        const ingredientList = cocktail.ingredients;
+        for (let i = 0; i < ingredientList.length; i++) {
+          const ingredient = document.createElement("li");
+          ingredient.classList.add("ingredients__item");
+          ingredient.innerText = `${cocktail.ingredients[i]}`;
+          ingredients.appendChild(ingredient);
+        }
+
+        const instructions = document.querySelector(".card__instructions");
+        const instruction = `${cocktail.instructions}`;
+        instructions.innerText = `${instruction}`;
+      }
+      const shownCard = document.querySelector(".card");
+      window.onclick = function (event) {
+        if (event.target == shownCard) {
+          shownCard.classList.add("card--hidden");
+        }
+      };
+
+      if (event.currentTarget.classList.contains("alcohol__mini-card--gin")) {
+        shownCard.classList.add("card--gin");
+      }
+
+      // if (event.currentTarget.classList.includes("alcohol__mini-card--rum")) {
+      //   // do stuff
+
+      //   return;
+      // }
     });
   });
 };
@@ -373,55 +408,6 @@ const getVodkaCocktails = (response) => {
     cocktailItem.appendChild(cocktailItemName);
     console.log(cocktailItemName);
 
-    // POP-UP
-    const cocktailCard = document.createElement("div");
-    cocktailCard.classList.add("card");
-
-    const cardHeading = document.createElement("h2");
-    cardHeading.classList.add("card__title");
-    cardHeading.innerText = `${cocktail.name.toUpperCase()}`;
-    cocktailCard.appendChild(cardHeading);
-
-    const cardInfoWrap = document.createElement("div");
-    cardInfoWrap.classList.add("card__info-wrap");
-
-    // INGERDIENTS
-    const cardIngredientsWrap = document.createElement("div");
-    cardIngredientsWrap.classList.add("ingredients__wrap");
-
-    const ingredientsHeader = document.createElement("h4");
-    ingredientsHeader.classList.add("ingredients__header");
-    ingredientsHeader.innerText = `INGREDIENTS`;
-    cardIngredientsWrap.appendChild(ingredientsHeader);
-
-    const ingredientList = document.createElement("ul");
-    ingredientList.classList.add("ingredients__list");
-    for (let i = 0; i < cocktail.ingredients.length; i++) {
-      const ingredient = document.createElement("li");
-      ingredient.classList.add("ingredients__item");
-      ingredient.innerText = `${cocktail.ingredients[i]}`;
-      ingredientList.appendChild(ingredient);
-    }
-    cardIngredientsWrap.appendChild(ingredientList);
-    cardInfoWrap.appendChild(cardIngredientsWrap);
-
-    // Instructions
-    const cardInstructionWrap = document.createElement("div");
-    cardInstructionWrap.classList.add("card__instruction-wrap");
-
-    const instructionsHeader = document.createElement("h4");
-    instructionsHeader.classList.add("card__instructions-header");
-    instructionsHeader.innerText = `INSTRUCTIONS`;
-    cardInstructionWrap.appendChild(instructionsHeader);
-
-    const instructions = document.createElement("p");
-    instructions.classList.add("card__instructions");
-    instructions.innerText = `${cocktail.instructions}`;
-    cardInstructionWrap.appendChild(instructions);
-    cardInfoWrap.appendChild(cardInstructionWrap);
-
-    cocktailCard.appendChild(cardInfoWrap);
-    cocktailItem.appendChild(cocktailCard);
     vodkaSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(vodkaSectionWrapper);
 
@@ -444,5 +430,118 @@ const getVodkaCocktails = (response) => {
         selectedCocktail.classList.remove("alcohol__mini-card--hovered-vodka");
       }
     });
+
+    // click -card
+    cocktailItem.addEventListener("click", (event) => {
+      const hiddenCard = document.querySelector(".card");
+      console.log(event.currentTarget);
+      hiddenCard.scrollTop = 0;
+
+      if (hiddenCard) {
+        hiddenCard.classList.remove("card--hidden");
+
+        const cocktailName = document.querySelector(".card__title");
+        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
+
+        const ingredients = document.querySelector(".ingredients__list");
+        const ingredientList = cocktail.ingredients;
+        for (let i = 0; i < ingredientList.length; i++) {
+          const ingredient = document.createElement("li");
+          ingredient.classList.add("ingredients__item");
+          ingredient.innerText = `${cocktail.ingredients[i]}`;
+          ingredients.appendChild(ingredient);
+        }
+
+        const instructions = document.querySelector(".card__instructions");
+        const instruction = `${cocktail.instructions}`;
+        instructions.innerText = `${instruction}`;
+      }
+      const shownCard = document.querySelector(".card");
+      window.onclick = function (event) {
+        if (event.target == shownCard) {
+          shownCard.classList.add("card--hidden");
+        }
+      };
+
+      if (event.currentTarget.classList.contains("alcohol__mini-card--vodka")) {
+        shownCard.classList.add("card--vodka");
+      }
+
+      // if (event.currentTarget.classList.includes("alcohol__mini-card--rum")) {
+      //   // do stuff
+
+      //   return;
+      // }
+    });
   });
 };
+
+const rumBtn = document.querySelector(".selection__option--rum");
+rumBtn.addEventListener("click", (event) => {
+  const drinksHighlighted = document.querySelector(".alcohol--highlighted-rum");
+  if (drinksHighlighted) {
+    drinksHighlighted.classList.remove("alcohol--highlighted-rum");
+  }
+  tequilaSectionWrapper.classList.remove("alcohol--highlighted-tequila");
+  tequilaBtn.classList.remove("alcohol--highlighted-tequila");
+  vodkaSectionWrapper.classList.remove("alcohol--highlighted-vodka");
+  vodkaBtn.classList.remove("alcohol--highlighted-vodka");
+  ginSectionWrapper.classList.remove("alcohol--highlighted-gin");
+  ginBtn.classList.remove("alcohol--highlighted-gin");
+
+  rumSectionWrapper.classList.add("alcohol--highlighted-rum");
+  event.currentTarget.classList.add("alcohol--highlighted-rum");
+});
+
+const tequilaBtn = document.querySelector(".selection__option--tequila");
+tequilaBtn.addEventListener("click", (event) => {
+  const drinksHighlighted = document.querySelector(
+    ".alcohol--highlighted-tequila"
+  );
+  if (drinksHighlighted) {
+    drinksHighlighted.classList.remove("alcohol--highlighted-tequila");
+  }
+  rumSectionWrapper.classList.remove("alcohol--highlighted-rum");
+  rumBtn.classList.remove("alcohol--highlighted-rum");
+  vodkaSectionWrapper.classList.remove("alcohol--highlighted-vodka");
+  vodkaBtn.classList.remove("alcohol--highlighted-vodka");
+  ginSectionWrapper.classList.remove("alcohol--highlighted-gin");
+  ginBtn.classList.remove("alcohol--highlighted-gin");
+
+  tequilaSectionWrapper.classList.add("alcohol--highlighted-tequila");
+  event.currentTarget.classList.add("alcohol--highlighted-tequila");
+});
+
+const ginBtn = document.querySelector(".selection__option--gin");
+ginBtn.addEventListener("click", (event) => {
+  const drinksHighlighted = document.querySelector(".alcohol--highlighted-gin");
+  if (drinksHighlighted) {
+    drinksHighlighted.classList.remove("alcohol--highlighted-gin");
+  }
+  tequilaSectionWrapper.classList.remove("alcohol--highlighted-tequila");
+  tequilaBtn.classList.remove("alcohol--highlighted-tequila");
+  vodkaSectionWrapper.classList.remove("alcohol--highlighted-vodka");
+  vodkaBtn.classList.remove("alcohol--highlighted-vodka");
+  rumSectionWrapper.classList.remove("alcohol--highlighted-rum");
+  rumBtn.classList.remove("alcohol--highlighted-rum");
+  ginSectionWrapper.classList.add("alcohol--highlighted-gin");
+  event.currentTarget.classList.add("alcohol--highlighted-gin");
+});
+
+const vodkaBtn = document.querySelector(".selection__option--vodka");
+vodkaBtn.addEventListener("click", (event) => {
+  const drinksHighlighted = document.querySelector(
+    ".alcohol--highlighted-vodka"
+  );
+  if (drinksHighlighted) {
+    drinksHighlighted.classList.remove("alcohol--highlighted-vodka");
+  }
+  tequilaSectionWrapper.classList.remove("alcohol--highlighted-tequila");
+  tequilaBtn.classList.remove("alcohol--highlighted-tequila");
+  rumSectionWrapper.classList.remove("alcohol--highlighted-rum");
+  rumBtn.classList.remove("alcohol--highlighted-rum");
+  ginSectionWrapper.classList.remove("alcohol--highlighted-gin");
+  ginBtn.classList.remove("alcohol--highlighted-gin");
+  vodkaSectionWrapper.classList.add("alcohol--highlighted-vodka");
+  event.currentTarget.classList.add("alcohol--highlighted-vodka");
+});

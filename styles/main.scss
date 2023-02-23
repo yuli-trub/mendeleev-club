@@ -73,6 +73,22 @@
   flex-wrap: wrap;
   width: 25%;
 
+  &--highlighted-vodka {
+    background-color: $vodka-highlight;
+  }
+
+  &--highlighted-rum {
+    background-color: $rum-highlight;
+  }
+
+  &--highlighted-tequila {
+    background-color: $tequila-highlight;
+  }
+
+  &--highlighted-gin {
+    background-color: $gin-highlight;
+  }
+
   &__mini-card {
     border: 2px $rum-primary solid;
     width: 50%;
@@ -124,10 +140,9 @@
 }
 
 .card {
-  display: none;
   position: absolute;
   right: 30%;
-  top: 32rem;
+  top: 40%;
   width: 40%;
   height: 55rem;
   border: 5px $gin-primary solid;
@@ -135,8 +150,26 @@
   padding: 3rem;
   overflow: scroll;
 
+  &--hidden {
+    display: none;
+  }
+
+  &--rum {
+    border-color: $rum-primary;
+  }
+  &--vodka {
+    border-color: $vodka-primary;
+  }
+  &--tequila {
+    border-color: $tequila-primary;
+  }
+  &--gin {
+    border-color: $gin-primary;
+  }
+
   &__title {
     font-size: 3.6rem;
+    margin: 2rem 0 2.4rem 0;
   }
 
   &__instruction-wrap {
@@ -152,4 +185,15 @@
   &__item {
     padding: 1rem;
   }
+}
+
+.wrap {
+  @include flex(space-between, flex-start, row);
+  position: sticky;
+}
+
+.card__button {
+  color: $text-light;
+  font-size: 3.6rem;
+  background-color: $bgd;
 }

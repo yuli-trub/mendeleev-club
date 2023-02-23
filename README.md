@@ -3,4 +3,9 @@
 --> images
 --> sort alphabetically
 -->animations to button and maybe header?
---> hover effect
+
+##Problems:
+
+buttons how to remove effect
+
+clivk anf sho respective card
