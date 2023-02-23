@@ -1,0 +1,194 @@
+@charset "UTF-8";
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Neon";
+  src: url(../../assets/fonts/TiltNeon-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../../assets/fonts/Montserrat/Montserrat-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../../assets/fonts/Montserrat/Montserrat-Medium.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  background-color: #0c0f0a;
+  color: rgb(238, 238, 238);
+  font-family: "Montserrat";
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 6.4rem;
+  color: #7400b8;
+  font-family: "Neon";
+}
+
+.header {
+  max-width: 102rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 22rem;
+}
+.header__title {
+  text-align: center;
+}
+.header__img {
+  height: 10rem;
+  width: auto;
+}
+
+.selection {
+  max-width: 102rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+.selection__title {
+  text-align: center;
+  font-size: 3.6rem;
+  color: #6930c3;
+  margin: 0;
+}
+.selection__choices {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.selection__option {
+  margin: 1.6rem;
+  padding: 1.2rem;
+  background-color: #0c0f0a;
+  border: 3px #5390d9 solid;
+  border-radius: 2px;
+  color: rgb(238, 238, 238);
+  width: 9rem;
+}
+.selection__option--rum {
+  border-color: #5e60ce;
+}
+.selection__option--vodka {
+  border-color: #5390d9;
+}
+.selection__option--tequila {
+  border-color: #72efdd;
+}
+.selection__option--gin {
+  border-color: #56cfe1;
+}
+
+#cocktails {
+  max-width: 102rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 4rem;
+}
+
+.alcohol {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 25%;
+}
+.alcohol__mini-card {
+  border: 2px #5e60ce solid;
+  width: 50%;
+  height: 11rem;
+  padding: 1rem;
+}
+.alcohol__mini-card--hovered-vodka {
+  background-color: #4ea8de;
+  transition: 1s;
+}
+.alcohol__mini-card--hovered-rum {
+  background-color: #6930c3;
+  transition: 1s;
+}
+.alcohol__mini-card--hovered-gin {
+  background-color: #64dfdf;
+  transition: 1s;
+}
+.alcohol__mini-card--hovered-tequila {
+  background-color: #80ffdb;
+  transition: 1s;
+}
+.alcohol__mini-card--rum {
+  border-color: #5e60ce;
+}
+.alcohol__mini-card--vodka {
+  border-color: #5390d9;
+}
+.alcohol__mini-card--tequila {
+  border-color: #72efdd;
+}
+.alcohol__mini-card--gin {
+  border-color: #56cfe1;
+}
+.alcohol__short-name {
+  margin: 0;
+  font-size: 3.2rem;
+}
+.alcohol__name {
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.card {
+  display: none;
+  position: absolute;
+  right: 30%;
+  top: 32rem;
+  width: 40%;
+  height: 55rem;
+  border: 5px #56cfe1 solid;
+  background-color: #0c0f0a;
+  padding: 3rem;
+  overflow: scroll;
+}
+.card__title {
+  font-size: 3.6rem;
+}
+.card__instruction-wrap {
+  margin-top: 3.6rem;
+}
+
+.ingredients__list {
+  list-style: "🍸";
+}
+.ingredients__item {
+  padding: 1rem;
+}/*# sourceMappingURL=main.css.map */

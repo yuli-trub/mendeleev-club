@@ -1,0 +1,155 @@
+@use "./partials/variables" as *;
+@use "./partials/resets";
+@use "./partials/mixins" as *;
+@use "./partials/typography";
+
+.header {
+  max-width: $max-width-desktop;
+  margin: 0 auto;
+  @include flex(space-between, center, row);
+  width: 100%;
+  padding: 0 22rem;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__img {
+    height: 10rem;
+    width: auto;
+  }
+}
+
+.selection {
+  max-width: $max-width-desktop;
+  margin: 0 auto;
+  @include flex(space-between, center, column);
+  margin-bottom: 3rem;
+
+  &__title {
+    text-align: center;
+    font-size: 3.6rem;
+    color: $page-secondary;
+    margin: 0;
+  }
+
+  &__choices {
+    @include flex(space-between, center, row);
+  }
+
+  &__option {
+    margin: 1.6rem;
+    padding: 1.2rem;
+    background-color: $bgd;
+    border: 3px $vodka-primary solid;
+    border-radius: 2px;
+    color: $text-light;
+    width: 9rem;
+
+    &--rum {
+      border-color: $rum-primary;
+    }
+    &--vodka {
+      border-color: $vodka-primary;
+    }
+    &--tequila {
+      border-color: $tequila-primary;
+    }
+    &--gin {
+      border-color: $gin-primary;
+    }
+  }
+}
+
+#cocktails {
+  max-width: $max-width-desktop;
+  margin: 0 auto;
+  @include flex(space-between, center, row);
+  margin-bottom: 4rem;
+}
+
+.alcohol {
+  @include flex(space-between, flex-end, row);
+  flex-wrap: wrap;
+  width: 25%;
+
+  &__mini-card {
+    border: 2px $rum-primary solid;
+    width: 50%;
+    height: 11rem;
+    padding: 1rem;
+
+    &--hovered-vodka {
+      background-color: $vodka-hover;
+      transition: 1s;
+    }
+
+    &--hovered-rum {
+      background-color: $rum-hover;
+      transition: 1s;
+    }
+
+    &--hovered-gin {
+      background-color: $gin-hover;
+      transition: 1s;
+    }
+
+    &--hovered-tequila {
+      background-color: $tequila-hover;
+      transition: 1s;
+    }
+    &--rum {
+      border-color: $rum-primary;
+    }
+    &--vodka {
+      border-color: $vodka-primary;
+    }
+    &--tequila {
+      border-color: $tequila-primary;
+    }
+    &--gin {
+      border-color: $gin-primary;
+    }
+  }
+
+  &__short-name {
+    margin: 0;
+    font-size: 3.2rem;
+  }
+
+  &__name {
+    padding: 1rem 0;
+    margin: 0;
+  }
+}
+
+.card {
+  display: none;
+  position: absolute;
+  right: 30%;
+  top: 32rem;
+  width: 40%;
+  height: 55rem;
+  border: 5px $gin-primary solid;
+  background-color: $bgd;
+  padding: 3rem;
+  overflow: scroll;
+
+  &__title {
+    font-size: 3.6rem;
+  }
+
+  &__instruction-wrap {
+    margin-top: 3.6rem;
+  }
+}
+
+.ingredients {
+  &__list {
+    list-style: "\1F378";
+  }
+
+  &__item {
+    padding: 1rem;
+  }
+}

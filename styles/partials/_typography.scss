@@ -1,0 +1,37 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+@font-face {
+  font-family: "Neon";
+  src: url(../../assets/fonts/TiltNeon-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(../../assets/fonts/Montserrat/Montserrat-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(../../assets/fonts/Montserrat/Montserrat-Medium.ttf)
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  background-color: $bgd;
+  color: $text-light;
+  font-family: "Montserrat";
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 6.4rem;
+  color: $header-text;
+  font-family: "Neon";
+}

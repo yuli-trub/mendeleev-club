@@ -1,0 +1,6 @@
+--> style
+--> add click event
+--> images
+--> sort alphabetically
+-->animations to button and maybe header?
+--> hover effect

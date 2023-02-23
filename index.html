@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mendeleev CLub</title>
-    <link rel="stylesheet" href="main.css" />
+    <title>Mendeleev</title>
+    <link rel="stylesheet" href="./styles/main.css" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.3/axios.min.js"
       integrity="sha512-wS6VWtjvRcylhyoArkahZUkzZFeKB7ch/MHukprGSh1XIidNvHG1rxPhyFnL73M0FC1YXPIXLRDAoOyRJNni/g=="
@@ -16,19 +16,25 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="header__title">MENDELEEV CLUB</h1>
+      <img src="./assets/icons/alchemy.png" alt="icon" class="header__img" />
+      <h1 class="header__title">MENDELEEV</h1>
+      <img src="./assets/icons/alchemy.png" alt="icon" class="header__img" />
     </header>
     <main class="main">
       <div class="selection">
-        <h2 class="selection__title">Choose your base</h2>
+        <h2 class="selection__title">CHOOSE YOUR BASE</h2>
         <div class="selection__choices">
-          <button class="selection__option">RUM</button>
-          <button class="selection__option">VODKA</button>
-          <button class="selection__option">TEQUILA</button>
-          <button class="selection__option">GIN</button>
+          <button class="selection__option selection__option--rum">RUM</button>
+          <button class="selection__option selection__option--vodka">
+            VODKA
+          </button>
+          <button class="selection__option selection__option--tequila">
+            TEQUILA
+          </button>
+          <button class="selection__option selection__option--gin">GIN</button>
         </div>
       </div>
-      <div id="cocktails">xcv</div>
+      <div id="cocktails"></div>
     </main>
   </body>
 </html>
