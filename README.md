@@ -1,11 +1,16 @@
---> style
---> add click event
---> images
---> sort alphabetically
--->animations to button and maybe header?
+# Mendeleev Club 
+A project for 24 hour hackathod for BrainStation bootcamp that uses a cocktail API to create an informational overview of the cocktail selecetion
 
-##Problems:
 
-buttons how to remove effect
-
-clivk anf sho respective card
+Skills applied in this project:
+- HTML5
+- CSS3
+- CSS Animations
+- Sass
+- Flexbox
+- Responsive Design
+- Git & using Terminal/Command Prompt
+- Fundamentals of Programming using Javascript
+- Document Object Model (DOM) APIs
+- Event Handling & Asynchronous Programming using Javascript
+- HTTP Fundamentals & using APIs 
