@@ -1,35 +1,52 @@
-// API link
-
+// API config
 const API_BASE_URL = "https://api.api-ninjas.com/v1/cocktail";
-
-// stateful value, state is the 'state' of the app
-let showModal = false;
-
-let vodkaDrinks = [];
-let rumDrinks = [];
-
 const config = {
   headers: {
     "X-Api-Key": "7MCYWsrFWY8L4O10ctFbMA==ZksmoXT5k7sgV9Qe",
   },
 };
 
+//Modal Handler
+let showModal = false;
+
 // Laying out the table
 const cocktailsTable = document.getElementById("cocktails");
-console.log(cocktailsTable);
 
-// const getRumDrinks = () => {
-//   return axios.get(`${API_BASE_URL}/?ingredients=rum`, config);
-// };
 
-// const getTequilaDrinks = () => {
-//   return axios.get(`${API_BASE_URL}/?ingredients=rum`, config);
-// };
 
-// getRumDrinks().then(() => {
-//   rumDrinks = response.data;
-//   getTequilaDrinks.then(());
-// });
+// //GET ALL DRINKS
+// axios
+//   .get(`${API_BASE_URL}/?ingredients=rum`, config)
+//   .then((response) => {
+//     const rumList = response.data
+//     getRumCocktails(rumList);
+
+//     //VODKA
+//     axios.get(`${API_BASE_URL}/?ingredients=vodka`, config).then((response) => {
+//       const vodkaList = response.data.slice(0,8)
+//       getVodkaCocktails(vodkaList);
+      
+//       //TEQUILA
+//       axios
+//         .get(`${API_BASE_URL}/?ingredients=tequila`, config)
+//         .then((response) => {
+//           const tequilaList = response.data.slice(0,8)
+//           getTequilaCocktails(tequilaList);
+
+//           //GIN
+//           axios
+//             .get(`${API_BASE_URL}/?ingredients=gin`, config)
+//             .then((response) => {
+//               const ginList = response.data
+//               getGinCocktails(ginList);
+//             });
+//         });
+//     });
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
 
 // RUM
 axios
