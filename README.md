@@ -1,5 +1,9 @@
 # Mendeleev Club 
-A project for 24 hour hackathod for BrainStation bootcamp that uses a cocktail API to create an informational overview of the cocktail selecetion
+A project for a 24-hour hackathon as part of the BrainStation bootcamp, that utilizes a cocktail API. The project focused on creating a comprehensive informational overview of the cocktail selection, showcasing various details such as ingredients, recipes, and ratings. 
+
+The aim was to strengthen the understanding and application of concepts such as DOM manipulation and APIs through this project.
+
+
 
 
 Skills applied in this project:
