@@ -52,15 +52,20 @@ h1 {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  width: 100%;
-  padding: 0 22rem;
+  position: absolute;
 }
 .header__title {
   text-align: center;
+  font-size: 3.6rem;
 }
 .header__img {
-  height: 10rem;
+  height: 4rem;
   width: auto;
+  margin-top: 1rem;
+}
+
+.main {
+  margin-top: 5rem;
 }
 
 .selection {
@@ -75,7 +80,7 @@ h1 {
 .selection__title {
   text-align: center;
   font-size: 3.6rem;
-  color: #6930c3;
+  color: rgb(94, 96, 206);
   margin: 0;
 }
 .selection__choices {
@@ -212,6 +217,12 @@ h1 {
 .card__instruction-wrap {
   margin-top: 3.6rem;
 }
+.card__button {
+  color: rgb(238, 238, 238);
+  font-size: 3.6rem;
+  background-color: #0c0f0a;
+  border: none;
+}
 
 .ingredients__list {
   list-style: "🍸";
@@ -227,10 +238,4 @@ h1 {
   align-items: flex-start;
   flex-direction: row;
   position: sticky;
-}
-
-.card__button {
-  color: rgb(238, 238, 238);
-  font-size: 3.6rem;
-  background-color: #0c0f0a;
 }/*# sourceMappingURL=main.css.map */

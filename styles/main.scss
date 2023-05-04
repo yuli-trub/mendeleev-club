@@ -7,17 +7,22 @@
   max-width: $max-width-desktop;
   margin: 0 auto;
   @include flex(space-between, center, row);
-  width: 100%;
-  padding: 0 22rem;
+  position: absolute;
 
   &__title {
     text-align: center;
+    font-size: 3.6rem;
   }
 
   &__img {
-    height: 10rem;
+    height: 4rem;
     width: auto;
+    margin-top: 1rem;
   }
+}
+
+.main{
+  margin-top: 5rem;
 }
 
 .selection {
@@ -175,6 +180,13 @@
   &__instruction-wrap {
     margin-top: 3.6rem;
   }
+
+  &__button{
+    color: $text-light;
+    font-size: 3.6rem;
+    background-color: $bgd;
+    border: none;
+  }
 }
 
 .ingredients {
@@ -193,8 +205,4 @@
   position: sticky;
 }
 
-.card__button {
-  color: $text-light;
-  font-size: 3.6rem;
-  background-color: $bgd;
-}
+
