@@ -111,7 +111,7 @@ h1 {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   flex-direction: row;
   margin-bottom: 4rem;
 }
@@ -182,7 +182,7 @@ h1 {
 .card {
   position: absolute;
   right: 30%;
-  top: 40%;
+  top: 31.8rem;
   width: 40%;
   height: 55rem;
   border: 5px #56cfe1 solid;
@@ -215,6 +215,7 @@ h1 {
 
 .ingredients__list {
   list-style: "🍸";
+  padding: 0 2rem;
 }
 .ingredients__item {
   padding: 1rem;

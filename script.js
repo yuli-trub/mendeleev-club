@@ -15,53 +15,53 @@ const cocktailsTable = document.getElementById("cocktails");
 
 
 // //GET ALL DRINKS
-// axios
-//   .get(`${API_BASE_URL}/?ingredients=rum`, config)
-//   .then((response) => {
-//     const rumList = response.data
-//     getRumCocktails(rumList);
-
-//     //VODKA
-//     axios.get(`${API_BASE_URL}/?ingredients=vodka`, config).then((response) => {
-//       const vodkaList = response.data.slice(0,8)
-//       getVodkaCocktails(vodkaList);
-      
-//       //TEQUILA
-//       axios
-//         .get(`${API_BASE_URL}/?ingredients=tequila`, config)
-//         .then((response) => {
-//           const tequilaList = response.data.slice(0,8)
-//           getTequilaCocktails(tequilaList);
-
-//           //GIN
-//           axios
-//             .get(`${API_BASE_URL}/?ingredients=gin`, config)
-//             .then((response) => {
-//               const ginList = response.data
-//               getGinCocktails(ginList);
-//             });
-//         });
-//     });
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-
-
-// RUM
 axios
   .get(`${API_BASE_URL}/?ingredients=rum`, config)
   .then((response) => {
-    axios.get().then(() => {
-      axios.gets;
-    });
+    const rumList = response.data
+    getRumCocktails(rumList);
 
-    console.log(response);
-    getRumCocktails(response.data);
+    //VODKA
+    axios.get(`${API_BASE_URL}/?ingredients=vodka`, config).then((response) => {
+      const vodkaList = response.data.slice(0,8)
+      getVodkaCocktails(vodkaList);
+      
+      //TEQUILA
+      axios
+        .get(`${API_BASE_URL}/?ingredients=tequila`, config)
+        .then((response) => {
+          const tequilaList = response.data.slice(0,8)
+          getTequilaCocktails(tequilaList);
+
+          //GIN
+          axios
+            .get(`${API_BASE_URL}/?ingredients=gin`, config)
+            .then((response) => {
+              const ginList = response.data
+              getGinCocktails(ginList);
+            });
+        });
+    });
   })
   .catch((error) => {
     console.log(error);
   });
+
+
+// RUM
+// axios
+//   .get(`${API_BASE_URL}/?ingredients=rum`, config)
+//   .then((response) => {
+//     axios.get().then(() => {
+//       axios.gets;
+//     });
+
+//     console.log(response);
+//     getRumCocktails(response.data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 const rumSectionWrapper = document.createElement("section");
 rumSectionWrapper.classList.add("alcohol");
@@ -177,15 +177,15 @@ document.querySelector(".card__button").onclick = (event) => {
 
 // TEQUILA
 
-axios
-  .get(`${API_BASE_URL}/?ingredients=tequila`, config)
-  .then((response) => {
-    console.log(response);
-    getTequilaCocktails(response.data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// axios
+//   .get(`${API_BASE_URL}/?ingredients=tequila`, config)
+//   .then((response) => {
+//     console.log(response);
+//     getTequilaCocktails(response.data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 const tequilaSectionWrapper = document.createElement("section");
 tequilaSectionWrapper.classList.add("alcohol");
@@ -291,15 +291,15 @@ const getTequilaCocktails = (response) => {
 
 // GIN
 
-axios
-  .get(`${API_BASE_URL}/?ingredients=gin`, config)
-  .then((response) => {
-    console.log(response);
-    getGinCocktails(response.data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// axios
+//   .get(`${API_BASE_URL}/?ingredients=gin`, config)
+//   .then((response) => {
+//     console.log(response);
+//     getGinCocktails(response.data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 const ginSectionWrapper = document.createElement("section");
 ginSectionWrapper.classList.add("alcohol");
@@ -393,15 +393,15 @@ const getGinCocktails = (response) => {
 
 // VODKA
 
-axios
-  .get(`${API_BASE_URL}/?ingredients=vodka`, config)
-  .then((response) => {
-    console.log(response);
-    getVodkaCocktails(response.data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// axios
+//   .get(`${API_BASE_URL}/?ingredients=vodka`, config)
+//   .then((response) => {
+//     console.log(response);
+//     getVodkaCocktails(response.data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 const vodkaSectionWrapper = document.createElement("section");
 vodkaSectionWrapper.classList.add("alcohol");
