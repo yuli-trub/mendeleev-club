@@ -9,35 +9,79 @@ const config = {
 //Modal Handler
 let showModal = false;
 
+//Click card function
+const showCardFunction = (drink, event, cocktail) => {
+  const hiddenCard = document.querySelector(".card");
+  console.log(event.currentTarget);
+  hiddenCard.scrollTop = 0;
+
+  if (hiddenCard) {
+    hiddenCard.classList.remove("card--hidden");
+
+    const cocktailName = document.querySelector(".card__title");
+    const title = cocktail.name;
+    cocktailName.innerText = `${title.toUpperCase()}`;
+
+    const ingredients = document.querySelector(".ingredients__list");
+    const ingredientList = cocktail.ingredients;
+    ingredients.innerHTML = " ";
+
+    for (let i = 0; i < ingredientList.length; i++) {
+      const ingredient = document.createElement("li");
+      ingredient.classList.add("ingredients__item");
+      ingredient.innerText = `${cocktail.ingredients[i]}`;
+      ingredients.appendChild(ingredient);
+    }
+
+    const instructions = document.querySelector(".card__instructions");
+    const instruction = `${cocktail.instructions}`;
+    instructions.innerText = `${instruction}`;
+  }
+  const shownCard = document.querySelector(".card");
+
+  const closeButton = document.querySelector(".card__button");
+  closeButton.addEventListener("click", () => {
+    shownCard.classList.add("card--hidden");
+  });
+
+  console.log(`"alcohol__mini-card--${drink}"`);
+  if (event.currentTarget.classList.contains(`alcohol__mini-card--${drink}`)) {
+    shownCard.classList.remove("card--gin");
+    shownCard.classList.remove("card--tequila");
+    shownCard.classList.remove("card--rum");
+    shownCard.classList.remove("card--vodka");
+
+    shownCard.classList.add(`card--${drink}`);
+  }
+};
+
 // Laying out the table
 const cocktailsTable = document.getElementById("cocktails");
-
-
 
 // //GET ALL DRINKS
 axios
   .get(`${API_BASE_URL}/?ingredients=rum`, config)
   .then((response) => {
-    const rumList = response.data
+    const rumList = response.data;
     getRumCocktails(rumList);
 
     //VODKA
     axios.get(`${API_BASE_URL}/?ingredients=vodka`, config).then((response) => {
-      const vodkaList = response.data.slice(0,8)
+      const vodkaList = response.data.slice(0, 8);
       getVodkaCocktails(vodkaList);
-      
+
       //TEQUILA
       axios
         .get(`${API_BASE_URL}/?ingredients=tequila`, config)
         .then((response) => {
-          const tequilaList = response.data.slice(0,8)
+          const tequilaList = response.data.slice(0, 8);
           getTequilaCocktails(tequilaList);
 
           //GIN
           axios
             .get(`${API_BASE_URL}/?ingredients=gin`, config)
             .then((response) => {
-              const ginList = response.data
+              const ginList = response.data;
               getGinCocktails(ginList);
             });
         });
@@ -47,21 +91,7 @@ axios
     console.log(error);
   });
 
-
 // RUM
-// axios
-//   .get(`${API_BASE_URL}/?ingredients=rum`, config)
-//   .then((response) => {
-//     axios.get().then(() => {
-//       axios.gets;
-//     });
-
-//     console.log(response);
-//     getRumCocktails(response.data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
 
 const rumSectionWrapper = document.createElement("section");
 rumSectionWrapper.classList.add("alcohol");
@@ -83,7 +113,6 @@ const getRumCocktails = (response) => {
     cocktailItemName.classList.add("alcohol__name");
     cocktailItemName.innerText = `${cocktail.name}`;
     cocktailItem.appendChild(cocktailItemName);
-    console.log(cocktailItemName);
 
     rumSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(rumSectionWrapper);
@@ -108,84 +137,14 @@ const getRumCocktails = (response) => {
       }
     });
 
-    // RUM
     // click -card
     cocktailItem.addEventListener("click", (event) => {
-      // get the modal
-      const hiddenCard = document.querySelector(".card");
-      console.log(showModal);
-
-      hiddenCard.scrollTop = 0;
-
-      // if the modal is hidden
-      if (!showModal) {
-        // remove hidden class
-        hiddenCard.classList.remove("card--hidden");
-
-        const cocktailName = document.querySelector(".card__title");
-        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
-
-        const ingredients = document.querySelector(".ingredients__list");
-        const ingredientList = cocktail.ingredients;
-
-        for (let i = 0; i < ingredientList.length; i++) {
-          const ingredient = document.createElement("li");
-          ingredient.classList.add("ingredients__item");
-          ingredient.innerText = `${cocktail.ingredients[i]}`;
-          ingredients.appendChild(ingredient);
-        }
-
-        const instructions = document.querySelector(".card__instructions");
-        const instruction = `${cocktail.instructions}`;
-        instructions.innerText = `${instruction}`;
-
-        // event.currentTarget.classList.add("alcohol__mini-card--hovered-rum");
-
-        showModal = true;
-        return;
-      }
-
-      if (showModal) {
-        // hide modal again
-        showModal = false;
-
-        hiddenCard.classList.add("card--hidden");
-      }
-
-      // if (event.currentTarget.classList.contains("alcohol__mini-card--rum")) {
-      //   shownCard.classList.add("card--rum");
-      // }
+      showCardFunction("rum", event, cocktail);
     });
   });
 };
 
-// window.onclick = function (event) {
-//   if (showModal === true) {
-//     const hiddenCard = document.querySelector(".card");
-
-//     showModal = false;
-//     hiddenCard.classList.add("card--hidden");
-//   }
-// };
-
-document.querySelector(".card__button").onclick = (event) => {
-  const hiddenCard = document.querySelector(".card");
-
-  hiddenCard.classList.toggle("card--hidden");
-  showModal = false;
-};
-
 // TEQUILA
-
-// axios
-//   .get(`${API_BASE_URL}/?ingredients=tequila`, config)
-//   .then((response) => {
-//     console.log(response);
-//     getTequilaCocktails(response.data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
 
 const tequilaSectionWrapper = document.createElement("section");
 tequilaSectionWrapper.classList.add("alcohol");
@@ -207,7 +166,6 @@ const getTequilaCocktails = (response) => {
     cocktailItemName.classList.add("alcohol__name");
     cocktailItemName.innerText = `${cocktail.name}`;
     cocktailItem.appendChild(cocktailItemName);
-    console.log(cocktailItemName);
 
     tequilaSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(tequilaSectionWrapper);
@@ -238,68 +196,12 @@ const getTequilaCocktails = (response) => {
 
     // click -card
     cocktailItem.addEventListener("click", (event) => {
-      const hiddenCard = document.querySelector(".card");
-      console.log(event.currentTarget);
-      hiddenCard.scrollTop = 0;
-
-      // if the modal is hidden
-      if (!showModal) {
-        // remove hidden class
-        hiddenCard.classList.remove("card--hidden");
-
-        const cocktailName = document.querySelector(".card__title");
-        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
-
-        const ingredients = document.querySelector(".ingredients__list");
-        const ingredientList = cocktail.ingredients;
-
-        for (let i = 0; i < ingredientList.length; i++) {
-          const ingredient = document.createElement("li");
-          ingredient.classList.add("ingredients__item");
-          ingredient.innerText = `${cocktail.ingredients[i]}`;
-          ingredients.appendChild(ingredient);
-        }
-
-        const instructions = document.querySelector(".card__instructions");
-        const instruction = `${cocktail.instructions}`;
-        instructions.innerText = `${instruction}`;
-
-        // event.currentTarget.classList.add("alcohol__mini-card--hovered-rum");
-
-        showModal = true;
-        return;
-      }
-
-      if (showModal) {
-        // hide modal again
-        showModal = false;
-
-        hiddenCard.classList.add("card--hidden");
-      }
-
-      if (event.currentTarget.classList.contains("alcohol__mini-card--rum")) {
-        hiddenCard.classList.add("card--rum");
-      }
-
-      // if (event.currentTarget.classList.includes("alcohol__mini-card--rum")) {
-      //   // do stuff
-
-      //   return;
+      showCardFunction("tequila", event, cocktail);
     });
   });
 };
 
 // GIN
-
-// axios
-//   .get(`${API_BASE_URL}/?ingredients=gin`, config)
-//   .then((response) => {
-//     console.log(response);
-//     getGinCocktails(response.data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
 
 const ginSectionWrapper = document.createElement("section");
 ginSectionWrapper.classList.add("alcohol");
@@ -321,7 +223,6 @@ const getGinCocktails = (response) => {
     cocktailItemName.classList.add("alcohol__name");
     cocktailItemName.innerText = `${cocktail.name}`;
     cocktailItem.appendChild(cocktailItemName);
-    console.log(cocktailItemName);
 
     ginSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(ginSectionWrapper);
@@ -348,60 +249,12 @@ const getGinCocktails = (response) => {
 
     // click -card
     cocktailItem.addEventListener("click", (event) => {
-      const hiddenCard = document.querySelector(".card");
-      console.log(event.currentTarget);
-      hiddenCard.scrollTop = 0;
-
-      if (hiddenCard) {
-        hiddenCard.classList.remove("card--hidden");
-
-        const cocktailName = document.querySelector(".card__title");
-        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
-
-        const ingredients = document.querySelector(".ingredients__list");
-        const ingredientList = cocktail.ingredients;
-        for (let i = 0; i < ingredientList.length; i++) {
-          const ingredient = document.createElement("li");
-          ingredient.classList.add("ingredients__item");
-          ingredient.innerText = `${cocktail.ingredients[i]}`;
-          ingredients.appendChild(ingredient);
-        }
-
-        const instructions = document.querySelector(".card__instructions");
-        const instruction = `${cocktail.instructions}`;
-        instructions.innerText = `${instruction}`;
-      }
-      const shownCard = document.querySelector(".card");
-      window.onclick = function (event) {
-        if (event.target == shownCard) {
-          shownCard.classList.add("card--hidden");
-        }
-      };
-
-      if (event.currentTarget.classList.contains("alcohol__mini-card--gin")) {
-        shownCard.classList.add("card--gin");
-      }
-
-      // if (event.currentTarget.classList.includes("alcohol__mini-card--rum")) {
-      //   // do stuff
-
-      //   return;
-      // }
+      showCardFunction("gin", event, cocktail);
     });
   });
 };
 
 // VODKA
-
-// axios
-//   .get(`${API_BASE_URL}/?ingredients=vodka`, config)
-//   .then((response) => {
-//     console.log(response);
-//     getVodkaCocktails(response.data);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
 
 const vodkaSectionWrapper = document.createElement("section");
 vodkaSectionWrapper.classList.add("alcohol");
@@ -423,7 +276,6 @@ const getVodkaCocktails = (response) => {
     cocktailItemName.classList.add("alcohol__name");
     cocktailItemName.innerText = `${cocktail.name}`;
     cocktailItem.appendChild(cocktailItemName);
-    console.log(cocktailItemName);
 
     vodkaSectionWrapper.appendChild(cocktailItem);
     cocktailsTable.appendChild(vodkaSectionWrapper);
@@ -450,45 +302,7 @@ const getVodkaCocktails = (response) => {
 
     // click -card
     cocktailItem.addEventListener("click", (event) => {
-      const hiddenCard = document.querySelector(".card");
-      console.log(event.currentTarget);
-      hiddenCard.scrollTop = 0;
-
-      if (hiddenCard) {
-        hiddenCard.classList.remove("card--hidden");
-
-        const cocktailName = document.querySelector(".card__title");
-        cocktailName.innerText = `${cocktailItemName.innerText.toUpperCase()}`;
-
-        const ingredients = document.querySelector(".ingredients__list");
-        const ingredientList = cocktail.ingredients;
-        for (let i = 0; i < ingredientList.length; i++) {
-          const ingredient = document.createElement("li");
-          ingredient.classList.add("ingredients__item");
-          ingredient.innerText = `${cocktail.ingredients[i]}`;
-          ingredients.appendChild(ingredient);
-        }
-
-        const instructions = document.querySelector(".card__instructions");
-        const instruction = `${cocktail.instructions}`;
-        instructions.innerText = `${instruction}`;
-      }
-      const shownCard = document.querySelector(".card");
-      window.onclick = function (event) {
-        if (event.target == shownCard) {
-          shownCard.classList.add("card--hidden");
-        }
-      };
-
-      if (event.currentTarget.classList.contains("alcohol__mini-card--vodka")) {
-        shownCard.classList.add("card--vodka");
-      }
-
-      // if (event.currentTarget.classList.includes("alcohol__mini-card--rum")) {
-      //   // do stuff
-
-      //   return;
-      // }
+      showCardFunction("vodka", event, cocktail);
     });
   });
 };
