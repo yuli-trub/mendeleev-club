@@ -8,6 +8,8 @@
   margin: 0 auto;
   @include flex(space-between, center, row);
   position: absolute;
+  top: 20rem;
+  left: 39%;
 
   &__title {
     text-align: center;
@@ -147,7 +149,7 @@
 .card {
   position: absolute;
   right: 30%;
-  top: 31.8rem;
+  top: 20rem;
   width: 40%;
   height: 55rem;
   border: 5px $gin-primary solid;

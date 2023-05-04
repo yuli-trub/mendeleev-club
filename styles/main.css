@@ -53,6 +53,8 @@ h1 {
   align-items: center;
   flex-direction: row;
   position: absolute;
+  top: 20rem;
+  left: 39%;
 }
 .header__title {
   text-align: center;
@@ -187,7 +189,7 @@ h1 {
 .card {
   position: absolute;
   right: 30%;
-  top: 31.8rem;
+  top: 20rem;
   width: 40%;
   height: 55rem;
   border: 5px #56cfe1 solid;
