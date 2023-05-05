@@ -52,16 +52,20 @@
     border-radius: 2px;
     color: $text-light;
     width: 9rem;
+    cursor: pointer;
 
     &--rum {
       border-color: $rum-primary;
     }
+
     &--vodka {
       border-color: $vodka-primary;
     }
+
     &--tequila {
       border-color: $tequila-primary;
     }
+
     &--gin {
       border-color: $gin-primary;
     }
@@ -105,31 +109,40 @@
     &--hovered-vodka {
       background-color: $vodka-hover;
       transition: 1s;
+      cursor: pointer;
     }
 
     &--hovered-rum {
       background-color: $rum-hover;
       transition: 1s;
+      cursor: pointer;
+
     }
 
     &--hovered-gin {
       background-color: $gin-hover;
       transition: 1s;
+      cursor: pointer;
     }
 
     &--hovered-tequila {
       background-color: $tequila-hover;
       transition: 1s;
+      cursor: pointer;
     }
+
     &--rum {
       border-color: $rum-primary;
     }
+
     &--vodka {
       border-color: $vodka-primary;
     }
+
     &--tequila {
       border-color: $tequila-primary;
     }
+
     &--gin {
       border-color: $gin-primary;
     }
@@ -188,6 +201,7 @@
     font-size: 3.6rem;
     background-color: $bgd;
     border: none;
+    cursor: pointer;
   }
 }
 

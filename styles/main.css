@@ -99,6 +99,7 @@ h1 {
   border-radius: 2px;
   color: rgb(238, 238, 238);
   width: 9rem;
+  cursor: pointer;
 }
 .selection__option--rum {
   border-color: #5e60ce;
@@ -152,18 +153,22 @@ h1 {
 .alcohol__mini-card--hovered-vodka {
   background-color: #4ea8de;
   transition: 1s;
+  cursor: pointer;
 }
 .alcohol__mini-card--hovered-rum {
   background-color: #6930c3;
   transition: 1s;
+  cursor: pointer;
 }
 .alcohol__mini-card--hovered-gin {
   background-color: #64dfdf;
   transition: 1s;
+  cursor: pointer;
 }
 .alcohol__mini-card--hovered-tequila {
   background-color: #80ffdb;
   transition: 1s;
+  cursor: pointer;
 }
 .alcohol__mini-card--rum {
   border-color: #5e60ce;
@@ -224,6 +229,7 @@ h1 {
   font-size: 3.6rem;
   background-color: #0c0f0a;
   border: none;
+  cursor: pointer;
 }
 
 .ingredients__list {
